@@ -1,7 +1,7 @@
 'use strict'
 
 // creating a base name for the mongodb
-const mongooseBaseName = 'next-level-fitness-client'
+const mongooseBaseName = 'next-level-fitness-api'
 
 // create the mongodb uri for development and test
 const database = {
