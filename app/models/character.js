@@ -43,7 +43,27 @@ const characterSchema = new Schema({
   },
   class: {
     type: String,
-    required: false
+    required: true
+  },
+  health: {
+    type: Number,
+    required: true
+  },
+  strength: {
+    type: Number,
+    required: true
+  },
+  stamina: {
+    type: Number,
+    required: true
+  },
+  magick: {
+    type: Number,
+    required: true
+  },
+  healing: {
+    type: Number,
+    required: true
   },
   owner: {
     type: Schema.Types.ObjectId,

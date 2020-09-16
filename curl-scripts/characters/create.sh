@@ -11,7 +11,12 @@ curl "${API}${URL_PATH}" \
   --data '{
     "character": {
       "name": "'"${NAME}"'",
-      "class": "'"${CLASS}"'"
+      "class": "'"${CLASS}"'",
+      "health": "'"${HEALTH}"'",
+      "strength": "'"${STRENGTH}"'",
+      "stamina": "'"${STAMINA}"'",
+      "magick": "'"${MAGICK}"'",
+      "healing": "'"${HEALING}"'"
     }
   }'
 

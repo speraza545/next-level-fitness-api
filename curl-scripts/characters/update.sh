@@ -9,10 +9,15 @@ curl "${API}${URL_PATH}/${ID}" \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "character": {
-      "name": "'"${NAME}"'",
-      "class": "'"${CLASS}"'"
-    }
-  }'
+  "character": {
+    "name": "'"${NAME}"'",
+    "class": "'"${CLASS}"'",
+    "health": "'"${HEALTH}"'",
+    "strength": "'"${STRENGTH}"'",
+    "stamina": "'"${STAMINA}"'",
+    "magick": "'"${MAGICK}"'",
+    "healing": "'"${HEALING}"'"
+  }
+}'
 
 echo
