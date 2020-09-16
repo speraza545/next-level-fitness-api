@@ -82,7 +82,7 @@ router.delete('/characters/:id/work-outs/:workoutid', requireToken, (req, res, n
   Character.findById(characterId)
     .then(handle404)
     .then(character => {
-      character.workOuts.id(characterId).remove()
+      character.workOuts.id(workOutId).remove()
       return character.save()
     })
     // send back 204 and no content if the deletion succeeded
