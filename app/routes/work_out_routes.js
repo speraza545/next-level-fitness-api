@@ -37,6 +37,47 @@ router.post('/characters/:id/work-outs', requireToken, (req, res, next) => {
       character.workOuts.push(newWorkOut)
       return character.save()
     })
+    .then(function (character) {
+      let cardio = 0
+      let strength = 0
+        if (newWorkOut.type === 'cardio'){
+          cardio += newWorkOut.minutes
+        } else {
+          strength += newWorkOut.minutes
+        }
+      if (character.class === 'Mage') {
+        character.health += (strength*.3)
+        character.strength += (strength*.7)
+        character.stamina += (cardio*.3)
+        character.magick += (cardio*.6)
+        character.healing  += (cardio*.1)
+      } else if (character.class === 'Knight') {
+        character.health += (strength*.7)
+        character.strength += (strength*.3)
+        character.stamina += (cardio*.6)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.3)
+      } else if (character.class === 'Priest') {
+        character.health += (strength*.8)
+        character.strength += (strength*.2)
+        character.stamina += (cardio*.2)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.7)
+      } else if (character.class === 'Archer') {
+        character.health += (strength*.2)
+        character.strength += (strength*.8)
+        character.stamina += (cardio*.8)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.1)
+      } else if (character.class === 'Warrior') {
+        character.health += (strength*.4)
+        character.strength += (strength*.6)
+        character.stamina += (cardio*.8)
+        character.magick += (cardio*.1)
+        character.healing += (cardio*.1)
+      }
+      return character.save()
+    })
     // respond to succesful `create` with status 201 and JSON of new "example"
     .then(character => {
       res.status(201).json({ character: character.toObject() })
@@ -59,6 +100,47 @@ router.patch('/characters/:id/work-outs/:workoutid', requireToken, removeBlanks,
   console.log(req.body)
   Character.findById(characterId)
     .then(handle404)
+    .then(function (character) {
+      let cardio = 0
+      let strength = 0
+        if (character.workOuts.id(workOutId).type === 'cardio'){
+          cardio += character.workOuts.id(workOutId).minutes
+        } else {
+          strength += character.workOuts.id(workOutId).minutes
+        }
+      if (character.class === 'Mage') {
+        character.health -= (strength*.3)
+        character.strength -= (strength*.7)
+        character.stamina -= (cardio*.3)
+        character.magick -= (cardio*.6)
+        character.healing  -= (cardio*.1)
+      } else if (character.class === 'Knight') {
+        character.health -= (strength*.7)
+        character.strength -= (strength*.3)
+        character.stamina -= (cardio*.6)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.3)
+      } else if (character.class === 'Priest') {
+        character.health -= (strength*.8)
+        character.strength -= (strength*.2)
+        character.stamina -= (cardio*.2)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.7)
+      } else if (character.class === 'Archer') {
+        character.health -= (strength*.2)
+        character.strength -= (strength*.8)
+        character.stamina -= (cardio*.8)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.1)
+      } else if (character.class === 'Warrior') {
+        character.health -= (strength*.4)
+        character.strength -= (strength*.6)
+        character.stamina -= (cardio*.8)
+        character.magick -= (cardio*.1)
+        character.healing -= (cardio*.1)
+      }
+      return character.save()
+    })
     .then(character => {
       character.workOuts.id(workOutId).date = workOutUpdate.date
       character.workOuts.id(workOutId).type = workOutUpdate.type
@@ -68,7 +150,47 @@ router.patch('/characters/:id/work-outs/:workoutid', requireToken, removeBlanks,
       character.workOuts.id(workOutId).content = workOutUpdate.content
       return character.save()
     })
-    // if that succeeded, return 204 and no JSON
+    .then(function (character) {
+      let cardio = 0
+      let strength = 0
+        if (workOutUpdate.type === 'cardio'){
+          cardio += workOutUpdate.minutes
+        } else {
+          strength += workOutUpdate.minutes
+        }
+      if (character.class === 'Mage') {
+        character.health += (strength*.3)
+        character.strength += (strength*.7)
+        character.stamina += (cardio*.3)
+        character.magick += (cardio*.6)
+        character.healing  += (cardio*.1)
+      } else if (character.class === 'Knight') {
+        character.health += (strength*.7)
+        character.strength += (strength*.3)
+        character.stamina += (cardio*.6)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.3)
+      } else if (character.class === 'Priest') {
+        character.health += (strength*.8)
+        character.strength += (strength*.2)
+        character.stamina += (cardio*.2)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.7)
+      } else if (character.class === 'Archer') {
+        character.health += (strength*.2)
+        character.strength += (strength*.8)
+        character.stamina += (cardio*.8)
+        character.magick += (cardio*.1)
+        character.healing  += (cardio*.1)
+      } else if (character.class === 'Warrior') {
+        character.health += (strength*.4)
+        character.strength += (strength*.6)
+        character.stamina += (cardio*.8)
+        character.magick += (cardio*.1)
+        character.healing += (cardio*.1)
+      }
+      return character.save()
+    })
     .then(() => res.sendStatus(204))
     // if an error occurs, pass it to the handler
     .catch(next)
@@ -81,6 +203,47 @@ router.delete('/characters/:id/work-outs/:workoutid', requireToken, (req, res, n
   const workOutId = req.params.workoutid
   Character.findById(characterId)
     .then(handle404)
+    .then(function (character) {
+      let cardio = 0
+      let strength = 0
+        if (character.workOuts.id(workOutId).type === 'cardio'){
+          cardio += character.workOuts.id(workOutId).minutes
+        } else {
+          strength += character.workOuts.id(workOutId).minutes
+        }
+      if (character.class === 'Mage') {
+        character.health -= (strength*.3)
+        character.strength -= (strength*.7)
+        character.stamina -= (cardio*.3)
+        character.magick -= (cardio*.6)
+        character.healing  -= (cardio*.1)
+      } else if (character.class === 'Knight') {
+        character.health -= (strength*.7)
+        character.strength -= (strength*.3)
+        character.stamina -= (cardio*.6)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.3)
+      } else if (character.class === 'Priest') {
+        character.health -= (strength*.8)
+        character.strength -= (strength*.2)
+        character.stamina -= (cardio*.2)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.7)
+      } else if (character.class === 'Archer') {
+        character.health -= (strength*.2)
+        character.strength -= (strength*.8)
+        character.stamina -= (cardio*.8)
+        character.magick -= (cardio*.1)
+        character.healing  -= (cardio*.1)
+      } else if (character.class === 'Warrior') {
+        character.health -= (strength*.4)
+        character.strength -= (strength*.6)
+        character.stamina -= (cardio*.8)
+        character.magick -= (cardio*.1)
+        character.healing -= (cardio*.1)
+      }
+      return character.save()
+    })
     .then(character => {
       character.workOuts.id(workOutId).remove()
       return character.save()
