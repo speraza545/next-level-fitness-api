@@ -262,11 +262,21 @@ router.get('/characters/:id/work-outs', requireToken, (req, res, next) => {
       // `examples` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return post.workOuts.map(workOuts => workOuts.toObject())
+      return character.workOuts.map(workOuts => workOuts.toObject())
     })
     // respond with status 200 and JSON of the examples
-    .then(post => res.status(200).json({ character: character }))
+    .then(character => res.status(200).json({ character: character }))
     // if an error occurs, pass it to the handler
+    .catch(next)
+})
+
+// SHOW
+// GET /examples/5a7db6c74d55bc51bdf39793
+router.get('/characters/:id/work-outs/:workoutid', requireToken, (req, res, next) => {
+  // req.params.id will be set based on the `:id` in the route
+  Character.findById(req.params.id)
+    .then(handle404)
+    .then(character => res.status(200).json({ workOut: character.workOuts.id(req.params.workoutid).toObject() }))
     .catch(next)
 })
 
