@@ -6,14 +6,14 @@ add workouts, your character stats start to scale based on the type of workout, 
 The client is located here: [client](https://github.com/skmidk/next-level-fitness-client)
 [link to erd](https://imgur.com/a/G5guADu)
 
-Verb	       URI Pattern
-POST	     /characters/:id/work-outs
-PATCH	     /characters/:id/work-outs/:commentid
-DELETE	   /characters/:id/work-outs/:commentid
-GET	       /characters
-GET      	/characters/:id
-POST	    /characters
-PATCH	    /characters/:id
+Verb	       URI Pattern  
+POST	     /characters/:id/work-outs  
+PATCH	     /characters/:id/work-outs/:commentid  
+DELETE	   /characters/:id/work-outs/:commentid  
+GET	       /characters  
+GET      	/characters/:id  
+POST	    /characters  
+PATCH	    /characters/:id  
 DELETE  	/characters/:id
 
 ## Installation
