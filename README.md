@@ -5,8 +5,8 @@ add workouts, your character stats start to scale based on the type of workout, 
 
 The client is located here:  
 [Client Repo](https://github.com/skmidk/next-level-fitness-client)  
-[Deployed Api](https://next-level-fitness.herokuapp.com/)
-[Deployed Client](https://skmidk.github.io/next-level-fitness-client/#/)
+[Deployed Api](https://next-level-fitness.herokuapp.com/)  
+[Deployed Client](https://skmidk.github.io/next-level-fitness-client/#/)  
 [link to erd](https://imgur.com/a/G5guADu)  
 
 
