@@ -9,7 +9,7 @@ const Character = require('../models/character')
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
 const customErrors = require('../../lib/custom_errors')
-
+const requireOwnership = customErrors.requireOwnership
 // we'll use this function to send 404 when non-existant document is requested
 const handle404 = customErrors.handle404
 
@@ -97,10 +97,10 @@ router.patch('/characters/:id/work-outs/:workoutid', requireToken, removeBlanks,
   const workOutId = req.params.workoutid
   const characterId = req.params.id
   const workOutUpdate = req.body.workOut
-  console.log(req.body)
   Character.findById(characterId)
     .then(handle404)
     .then(function (character) {
+      requireOwnership(req, character)
       let cardio = 0
       let strength = 0
         if (character.workOuts.id(workOutId).type === 'cardio'){
@@ -204,6 +204,7 @@ router.delete('/characters/:id/work-outs/:workoutid', requireToken, (req, res, n
   Character.findById(characterId)
     .then(handle404)
     .then(function (character) {
+      requireOwnership(req, character)
       let cardio = 0
       let strength = 0
         if (character.workOuts.id(workOutId).type === 'cardio'){
